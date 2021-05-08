@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1D7B7741-AEBB-498C-BCA8-9E624EACD731}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FaceComp</RootNamespace>
+    <RootNamespace>FaceCompExample</RootNamespace>
     <AssemblyName>FaceComp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

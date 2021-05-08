@@ -23,7 +23,7 @@ using AForge.Video;
 using System.ComponentModel;
 using System.Windows.Threading;
 
-namespace FaceComp
+namespace FaceCompExample
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -35,7 +35,7 @@ namespace FaceComp
 
         int m_imageIndex = 0;
 
-        FaceCompMgr faceCompMgr;
+        FaceComp faceComp;
         Bitmap imageTaken = null;
 
         VideoCaptureDevice m_videoSource;
@@ -87,7 +87,7 @@ namespace FaceComp
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.Title = FaceCompMgr.GetVersion() + (faceCompMgr.HasLicense ? " (License is valid)" : " (No license - Contact: 0939.825.125)");
+            this.Title = FaceComp.GetVersion() + (faceComp.HasLicense ? " (License is valid)" : " (No license - Contact: 0939.825.125)");
 
             btnOpen1.Visibility = Visibility.Visible;
             btnOpen2.Visibility = Visibility.Visible;
@@ -103,7 +103,7 @@ namespace FaceComp
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            faceCompMgr = new FaceCompMgr();
+            faceComp = new FaceComp();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ namespace FaceComp
             if (imagePath1 != null && imagePath2 != null && imagePath1 != "" && imagePath2 != "")
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
-                FacialCompare result = faceCompMgr.Compare(imagePath1, imagePath2, true);
+                FacialCompare result = faceComp.Compare(imagePath1, imagePath2, true);
                 watch.Stop();
                 var elapsedMs = watch.ElapsedMilliseconds;
                 
@@ -132,7 +132,7 @@ namespace FaceComp
                 this.Dispatcher.Invoke(() =>
                 {
                     label.Content = result.percent + "% (" + elapsedMs + "ms)";
-                    if (result.percent >= faceCompMgr.Thresh)
+                    if (result.percent >= faceComp.Thresh)
                         label.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0x00, 0xBB, 0x3C));
                     else
                         label.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFF, 0x00, 0x00));
@@ -150,8 +150,8 @@ namespace FaceComp
                 var watch = System.Diagnostics.Stopwatch.StartNew();
                 string imageOutputPath1 = Directory.GetCurrentDirectory() + "\\result1.jpg";
                 string imageOutputPath2 = Directory.GetCurrentDirectory() + "\\result2.jpg";
-                faceCompMgr.DrawLandmarkAndSave(imagePath1, imageOutputPath1);
-                faceCompMgr.DrawLandmarkAndSave(imagePath2, imageOutputPath2);
+                faceComp.DrawLandmarkAndSave(imagePath1, imageOutputPath1);
+                faceComp.DrawLandmarkAndSave(imagePath2, imageOutputPath2);
                 watch.Stop();
                 var elapsedMs = watch.ElapsedMilliseconds;
 

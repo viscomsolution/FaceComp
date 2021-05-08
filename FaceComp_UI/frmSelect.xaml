@@ -1,9 +1,9 @@
-﻿<Window x:Class="FaceComp.frmSelect"
+﻿<Window x:Class="FaceCompExample.frmSelect"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FaceComp"
+        xmlns:local="clr-namespace:FaceCompExample"
         mc:Ignorable="d"
         Title="FaceComp" Height="475" Width="897.762" Icon="Icon/webcam_64.png" ResizeMode="NoResize">
     <Grid>

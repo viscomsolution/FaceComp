@@ -22,7 +22,7 @@ using Microsoft.Win32;
 using System.ComponentModel;
 using System.Windows.Threading;
 
-namespace FaceComp
+namespace FaceCompExample
 {
     /// <summary>
     /// Interaction logic for frmWebcam.xaml
@@ -35,7 +35,7 @@ namespace FaceComp
         DispatcherTimer timerProgress = new DispatcherTimer();
         string m_result;
 
-        FaceCompMgr faceCompMgr;        
+        FaceComp faceComp;        
 
         public frmSearch()
         {
@@ -59,7 +59,7 @@ namespace FaceComp
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            faceCompMgr = new FaceCompMgr();
+            faceComp = new FaceComp();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@ namespace FaceComp
         {
             btnSearch.Visibility = Visibility.Visible;
 
-            this.Title =  FaceCompMgr.GetVersion() + (faceCompMgr.HasLicense ? " (License is valid)" : " (No license - Contact: 0939.825.125)");
+            this.Title =  FaceComp.GetVersion() + (faceComp.HasLicense ? " (License is valid)" : " (No license - Contact: 0939.825.125)");
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -279,7 +279,7 @@ namespace FaceComp
                         int percent = int.Parse(splitted[1]);
                         lblPercent.Content = percent.ToString() + "%";
 
-                        if (percent >= faceCompMgr.Thresh)
+                        if (percent >= faceComp.Thresh)
                             lblPercent.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0x00, 0xBB, 0x3C));
                         else
                             lblPercent.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFF, 0x00, 0x00));

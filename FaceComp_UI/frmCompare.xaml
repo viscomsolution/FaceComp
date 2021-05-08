@@ -1,9 +1,9 @@
-﻿<Window x:Class="FaceComp.frmCompare"
+﻿<Window x:Class="FaceCompExample.frmCompare"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FaceComp"
+        xmlns:local="clr-namespace:FaceCompExample"
         mc:Ignorable="d"
         Title="Compare face" Height="618.5" Width="1018.5" Icon="Icon/webcam_64.png">
     <Grid OpacityMask="#FF18A451">

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TGMTcs;
 
-namespace FaceComp
+namespace FaceCompExample
 {
     /// <summary>
     /// Interaction logic for frmSelect.xaml
@@ -24,7 +24,7 @@ namespace FaceComp
         {
             InitializeComponent();
 
-            this.Title = FaceCompMgr.GetVersion();
+            this.Title = FaceComp.GetVersion();
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)

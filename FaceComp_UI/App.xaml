@@ -1,7 +1,7 @@
-﻿<Application x:Class="FaceComp.App"
+﻿<Application x:Class="FaceCompExample.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:FaceComp"
+             xmlns:local="clr-namespace:FaceCompExample"
              StartupUri="frmCompare.xaml">
     <Application.Resources>
          

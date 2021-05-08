@@ -23,7 +23,7 @@ using AForge.Video;
 using System.ComponentModel;
 using System.Windows.Threading;
 
-namespace FaceComp
+namespace FaceCompExample
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -35,7 +35,7 @@ namespace FaceComp
 
         int m_imageIndex = 0;
 
-        FaceCompMgr faceCompMgr;
+        FaceComp faceCompMgr;
         Bitmap imageTaken = null;
 
         VideoCaptureDevice m_videoSource;
@@ -81,7 +81,7 @@ namespace FaceComp
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.Title = FaceCompMgr.GetVersion() + (faceCompMgr.HasLicense ? " (License is valid)" : " (No license - Contact: 0939.825.125)");
+            this.Title = FaceComp.GetVersion() + (faceCompMgr.HasLicense ? " (License is valid)" : " (No license - Contact: 0939.825.125)");
 
             btnOpen1.Visibility = Visibility.Visible;
             btnWebcam1.Visibility = Visibility.Visible;
@@ -94,7 +94,7 @@ namespace FaceComp
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            faceCompMgr = new FaceCompMgr();
+            faceCompMgr = new FaceComp();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
