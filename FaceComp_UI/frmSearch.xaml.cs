@@ -88,7 +88,7 @@ namespace FaceCompExample
 
             if (videosources.Count == 0)
             {
-                MessageBox.Show("Can not find camera");
+                //MessageBox.Show("Can not find camera");
                 return;
             }
 
@@ -224,6 +224,8 @@ namespace FaceCompExample
             if (m_imagePath == null || m_imagePath == "" || txtDirPath.Text == "")
                 return;
 
+            btnSearch.IsEnabled = false;
+
             List<string> arguments = new List<string>() { m_imagePath, txtDirPath.Text };
 
             BackgroundWorker workerSearch = new BackgroundWorker();
@@ -258,8 +260,8 @@ namespace FaceCompExample
             string imagePath = arguments[0];
             string dirPath = arguments[1];
 
-            //string filePath = faceCompMgr.FindMostSimilar(imagePath, dirPath, true);
-            //e.Result = filePath;
+            FacialRecognized facial = faceComp.FindMostSimilarInDir(imagePath, dirPath, true);
+            e.Result = facial;
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -268,33 +270,31 @@ namespace FaceCompExample
         {
             try
             {
-                string filePath = e.Result.ToString();
+                FacialRecognized facial = (FacialRecognized)e.Result;
 
-                if (filePath != "")
+                if (facial.mostSimilarImagePath != "")
                 {
-                    string[] splitted = filePath.Split(',');
-                    filePath = splitted[0];
-                    if (filePath != "" && splitted.Length > 1)
-                    {
-                        int percent = int.Parse(splitted[1]);
-                        lblPercent.Content = percent.ToString() + "%";
 
-                        if (percent >= faceComp.Thresh)
-                            lblPercent.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0x00, 0xBB, 0x3C));
-                        else
-                            lblPercent.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFF, 0x00, 0x00));
+                    lblPercent.Content = facial.percent.ToString() + "%";
 
-                        picturebox2.Source = TGMTimage.LoadImageWithoutLock(filePath);
+                    if (facial.percent >= faceComp.Thresh)
+                        lblPercent.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0x00, 0xBB, 0x3C));
+                    else
+                        lblPercent.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFF, 0x00, 0x00));
 
-                        m_result = filePath;
-                    }
+                    picturebox2.Source = TGMTimage.LoadImageWithoutLock(facial.mostSimilarImagePath);
+
+                    m_result = facial.mostSimilarImagePath;                    
+                }
+                else
+                {
+                    lblPercent.Content = "Face not found";
                 }
             }
             catch(Exception ex)
             {
 
             }
-                      
 
             btnSearch.IsEnabled = true;
             timerProgress.Stop();
@@ -309,10 +309,10 @@ namespace FaceCompExample
             if (m_videoSource != null)
                 m_videoSource.Stop();
 
-            string datetime = DateTime.Now.AddHours(7).ToString("yyyy-MM-dd-hh-mm-ss") + ".jpg";
+            string imagePath = DateTime.Now.AddHours(7).ToString("yyyy-MM-dd-hh-mm-ss") + ".jpg";
 
-            imageTaken.Save(datetime, ImageFormat.Jpeg);
-            m_imagePath = datetime;
+            imageTaken.Save(imagePath, ImageFormat.Jpeg);
+            m_imagePath = imagePath;
 
             label1.Visibility = Visibility.Hidden;
             cbWebcam.Visibility = Visibility.Hidden;
