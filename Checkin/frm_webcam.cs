@@ -126,6 +126,9 @@ namespace Checkin
 
         void LoadImageInDir()
         {
+            cbCamera.Enabled = false;
+            btn_capture.Enabled = false;
+
             if (Program.g_parentDir == "")
             {
                 PrintError("Chưa setup parent folder, vui lòng vào menu Danh sách khuôn mặt để thêm");
@@ -138,6 +141,12 @@ namespace Checkin
             g_loadFaceSuccess = Program.g_facecomp.LoadFaceInDir(Program.g_parentDir);
             string[] dirList = Program.g_facecomp.GetDirList();
 
+            if(dirList.Length == 0)
+            {
+                MessageBox.Show("Chưa có khuôn mặt trong database. Vui lòng thêm khuôn mặt trong menu Danh sách khuôn mặt");
+                return;
+            }
+
             foreach (string dir in dirList)
             {
                 string dirName = Path.GetFileName(dir);
@@ -145,6 +154,9 @@ namespace Checkin
                 item.SubItems.Add("0");
                 listView1.Items.Add(item);
             }
+
+            cbCamera.Enabled = true;
+            btn_capture.Enabled = true;
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
