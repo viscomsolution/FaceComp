@@ -31,14 +31,6 @@ namespace Checkin
 
         private void frm_person_Load(object sender, EventArgs e)
         {
-            string[] dirList = Program.g_facecomp.GetDirList();
-
-            foreach (string dir in dirList)
-            {
-                string dirName = Path.GetFileName(dir);
-                listView1.Items.Add(dirName);
-            }
-
             txt_parentDir.Text = Program.g_parentDir;
 
             InitCamera();
@@ -180,6 +172,14 @@ namespace Checkin
 
         private void txt_parentDir_TextChanged(object sender, EventArgs e)
         {
+            ShowDirList();
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        void ShowDirList()
+        {
+            listView1.Items.Clear();
             Program.g_facecomp.LoadFaceInDir(txt_parentDir.Text);
             string[] dirList = Program.g_facecomp.GetDirList();
 
@@ -194,6 +194,7 @@ namespace Checkin
 
         private void frm_person_FormClosed(object sender, FormClosedEventArgs e)
         {
+            StopAllCamera();
             Program.g_parentDir = txt_parentDir.Text;
             TGMTregistry.GetInstance().SaveValue("parentDir", Program.g_parentDir);
         }
