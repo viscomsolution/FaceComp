@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceComp_UI_CUDA", "FaceComp_UI\FaceComp_UI_CUDA.csproj", "{E2AD2DD4-BAD1-4C3E-8C0F-F6C08EAB4D34}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkin_CUDA", "Checkin\Checkin_CUDA.csproj", "{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2AD2DD4-BAD1-4C3E-8C0F-F6C08EAB4D34}.Debug|x64.ActiveCfg = Debug|x64
-		{E2AD2DD4-BAD1-4C3E-8C0F-F6C08EAB4D34}.Debug|x64.Build.0 = Debug|x64
-		{E2AD2DD4-BAD1-4C3E-8C0F-F6C08EAB4D34}.Release|x64.ActiveCfg = Release|x64
-		{E2AD2DD4-BAD1-4C3E-8C0F-F6C08EAB4D34}.Release|x64.Build.0 = Release|x64
+		{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}.Debug|x64.ActiveCfg = Debug|x64
+		{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}.Debug|x64.Build.0 = Debug|x64
+		{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}.Release|x64.ActiveCfg = Release|x64
+		{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

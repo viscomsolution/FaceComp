@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceComp_UI", "FaceComp_UI\FaceComp_UI.csproj", "{1D7B7741-AEBB-498C-BCA8-9E624EACD731}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkin_x86", "Checkin\Checkin_x86.csproj", "{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D7B7741-AEBB-498C-BCA8-9E624EACD731}.Debug|Win32.ActiveCfg = Debug|x86
-		{1D7B7741-AEBB-498C-BCA8-9E624EACD731}.Debug|Win32.Build.0 = Debug|x86
-		{1D7B7741-AEBB-498C-BCA8-9E624EACD731}.Release|Win32.ActiveCfg = Release|x86
-		{1D7B7741-AEBB-498C-BCA8-9E624EACD731}.Release|Win32.Build.0 = Release|x86
+		{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}.Debug|Win32.ActiveCfg = Debug|x86
+		{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}.Debug|Win32.Build.0 = Debug|x86
+		{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}.Release|Win32.ActiveCfg = Release|x86
+		{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}.Release|Win32.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
