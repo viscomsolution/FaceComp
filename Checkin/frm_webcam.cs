@@ -114,6 +114,8 @@ namespace Checkin
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            this.Text = FaceComp.GetVersion() + (Program.g_facecomp.HasLicense ? " (License is valid)" : " (Invalid license - Contact: 0939.825.125)");
+
             LoadImageInDir();
 
             timerProgressbar.Stop();
@@ -222,6 +224,9 @@ namespace Checkin
         
         private void btn_capture_Click(object sender, EventArgs e)
         {
+            if (g_bmp == null)
+                return;
+
             Bitmap bmp = (Bitmap)g_bmp.Clone();
 
             FacialRecognized result = Program.g_facecomp.FindMostSimilarInArray(bmp);
