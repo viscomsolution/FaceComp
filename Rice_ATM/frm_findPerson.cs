@@ -184,6 +184,7 @@ namespace Checkin
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //LoadImageInDir();
+            this.Text += Program.g_facecomp.HasLicense ? " (License is valid)" : " (Invalid license)";
 
             timerProgressbar.Stop();
             progressBar1.Value = progressBar1.Minimum;
