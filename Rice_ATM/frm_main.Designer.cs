@@ -54,7 +54,7 @@
             this.rdTrigger = new System.Windows.Forms.RadioButton();
             this.btn_trigger = new System.Windows.Forms.Button();
             this.btn_connectBoard = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numDay = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_numDay = new System.Windows.Forms.TextBox();
@@ -64,7 +64,7 @@
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_result)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTaken)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDay)).BeginInit();
             this.SuspendLayout();
             // 
             // picWebcam
@@ -206,9 +206,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(430, 274);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(287, 31);
+            this.label4.Size = new System.Drawing.Size(171, 31);
             this.label4.TabIndex = 20;
-            this.label4.Text = "Lần xuất hiện gần nhất";
+            this.label4.Text = "Lần gần nhất";
             // 
             // pic_result
             // 
@@ -302,18 +302,19 @@
             this.btn_connectBoard.Visible = false;
             this.btn_connectBoard.Click += new System.EventHandler(this.btn_connectBoard_Click);
             // 
-            // numericUpDown1
+            // numDay
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(524, 65);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(60, 23);
-            this.numericUpDown1.TabIndex = 30;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numDay.Location = new System.Drawing.Point(524, 65);
+            this.numDay.Name = "numDay";
+            this.numDay.Size = new System.Drawing.Size(60, 23);
+            this.numDay.TabIndex = 30;
+            this.numDay.Value = new decimal(new int[] {
             7,
             0,
             0,
             0});
+            this.numDay.ValueChanged += new System.EventHandler(this.numDay_ValueChanged);
             // 
             // label2
             // 
@@ -358,7 +359,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txt_numDay);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numDay);
             this.Controls.Add(this.btn_connectBoard);
             this.Controls.Add(this.lblBoard);
             this.Controls.Add(this.btn_trigger);
@@ -392,7 +393,7 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_result)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTaken)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,7 +425,7 @@
         private System.Windows.Forms.Label lblBoard;
         private System.Windows.Forms.Button btn_trigger;
         private System.Windows.Forms.Button btn_connectBoard;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numDay;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txt_numDay;

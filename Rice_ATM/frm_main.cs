@@ -160,6 +160,7 @@ namespace Checkin
             InitArduino();
             TGMTregistry.GetInstance().Init("FaceComp");
             g_personID = TGMTregistry.GetInstance().ReadInt("personID");
+            numDay.Value = TGMTregistry.GetInstance().ReadInt("numDay");
 
             m_sqlite = new TGMTsqlite("db.sqlite3");
 
@@ -520,6 +521,7 @@ namespace Checkin
             if (tbl.Rows.Count == 0)
             {
                 AddPerson(personID);
+                m_arduino.Send("O");
                 return;
             }
                 
@@ -527,11 +529,15 @@ namespace Checkin
             DataRow row = tbl.Rows[0];
             
             txt_time.Text = row[0].ToString();// time.ToString("yyyy-MM-dd HH:mm:ss");
-            DateTime time = DateTime.Parse(row[0].ToString());
-            int numDay = (DateTime.Now - time).Days;
-            txt_numDay.Text = numDay.ToString();
+            DateTime timeAppear = DateTime.Parse(row[0].ToString());
+            int numHours = (int)(DateTime.Now - timeAppear).TotalHours;
+            int numDays = (int)(DateTime.Now - timeAppear).TotalDays;
+            txt_numDay.Text = numDays.ToString();
+            label4.Text = "Lần gần nhất: " + numHours.ToString() + " giờ";
 
-            if(numDay > numericUpDown1.Value)
+            int hourEaryAllow = 3;
+
+            if(numHours > (this.numDay.Value * 24 - hourEaryAllow))
             {
                 m_arduino.Send("O");
             }
@@ -549,6 +555,13 @@ namespace Checkin
         private void timerAuto_Tick(object sender, EventArgs e)
         {
             DetectFace();
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void numDay_ValueChanged(object sender, EventArgs e)
+        {
+            TGMTregistry.GetInstance().SaveValue("numDay", numDay.Value);
         }
     }
 }
