@@ -356,6 +356,8 @@ namespace Checkin
 
                     AddPerson(personID);
                     txt_personID.Text = personID;
+
+                    m_arduino.Send("O");
                 }
                 else
                 {
