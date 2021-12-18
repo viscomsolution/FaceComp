@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceComp_CUDA", "Checkin\FaceComp_CUDA.csproj", "{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceCompExample_CUDA", "FaceComp\FaceCompExample_CUDA.csproj", "{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

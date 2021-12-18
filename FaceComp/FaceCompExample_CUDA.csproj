@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FB535BFA-F8D1-4C3A-8F67-06C4D4DA6BAD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Checkin</RootNamespace>
-    <AssemblyName>Checkin</AssemblyName>
+    <RootNamespace>FaceCompExample</RootNamespace>
+    <AssemblyName>FaceCompExample</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -18,7 +18,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\bin\FaceComp-x64\</OutputPath>
+    <OutputPath>..\bin\FaceComp-x64_CUDA\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -27,7 +27,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\bin\FaceComp-x64\</OutputPath>
+    <OutputPath>..\bin\FaceComp-x64_CUDA\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -43,8 +43,8 @@
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>.\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="FaceComp-x64">
-      <HintPath>..\bin\FaceComp-x64\FaceComp-x64.dll</HintPath>
+    <Reference Include="FaceComp_CUDA">
+      <HintPath>..\bin\FaceComp-x64_CUDA\FaceComp_CUDA.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,6 +88,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
