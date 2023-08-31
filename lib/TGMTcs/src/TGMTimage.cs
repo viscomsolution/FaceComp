@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Windows.Media.Imaging;
 
 namespace TGMTcs
 {
@@ -169,10 +168,26 @@ namespace TGMTcs
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        public static Image ResizeImageByWidth(Image image, int width)
+        {
+            float ratio = (float)image.Width / (float)image.Height;
+            int height = (int)((float)width / ratio);
+
+            return ResizeBitmap(image, width, height);
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static Bitmap CropBitmap(Bitmap bmp, Rectangle rect)
         {
-            Bitmap bmpImage = new Bitmap(bmp);
-            return bmpImage.Clone(rect, bmpImage.PixelFormat);
+            Bitmap target = new Bitmap(rect.Width, rect.Height);
+            using (Graphics g = Graphics.FromImage(target))
+            {
+                g.DrawImage(bmp, new Rectangle(0, 0, target.Width, target.Height),
+                                 rect,
+                                 GraphicsUnit.Pixel);
+                return target;
+            }
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,25 +207,10 @@ namespace TGMTcs
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public static BitmapImage LoadImageWithoutLock(string imagePath)
-        {
-            MemoryStream ms = new MemoryStream();
-            BitmapImage bitmap = new BitmapImage();
-
-            byte[] arrbytFileContent = File.ReadAllBytes(imagePath);
-            ms.Write(arrbytFileContent, 0, arrbytFileContent.Length);
-            ms.Position = 0;
-            bitmap.BeginInit();
-            bitmap.StreamSource = ms;
-            bitmap.EndInit();
-
-            return bitmap;
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-
         public static Bitmap LoadBitmapWithoutLock(string imagePath)
         {
+            if (!File.Exists(imagePath))
+                return null;
             var bytes = File.ReadAllBytes(imagePath);
             var ms = new MemoryStream(bytes);
             var img = Image.FromStream(ms);
@@ -219,24 +219,61 @@ namespace TGMTcs
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public static BitmapImage BitmapToBitmapImage(Bitmap bitmap, ImageFormat imageFormat)
+        public static byte[] ImageToBytes(Image image, ImageFormat imageFormat)
         {
-            if (bitmap == null)
-                return null;
-            using (var memory = new MemoryStream())
+            byte[] imageBytes;
+            try
             {
-                bitmap.Save(memory, imageFormat);
-                memory.Position = 0;
-
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = memory;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
-                bitmapImage.Freeze();
-
-                return bitmapImage;
+                using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+                {
+                    image.Save(ms, imageFormat);
+                    imageBytes = ms.ToArray();
+                }
             }
+            catch (Exception)
+            {
+                throw;
+            }
+            return imageBytes;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static Image BytesToImage(byte[] imageBytes)
+        {
+            Image image;
+            try
+            {
+                System.IO.MemoryStream ms = new System.IO.MemoryStream(imageBytes);
+                image = Image.FromStream(ms);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return image;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static Bitmap RotateImage(Bitmap bmp, float angle)
+        {
+            Bitmap rotatedImage = new Bitmap(bmp.Width, bmp.Height);
+            rotatedImage.SetResolution(bmp.HorizontalResolution, bmp.VerticalResolution);
+
+            using (Graphics g = Graphics.FromImage(rotatedImage))
+            {
+                // Set the rotation point to the center in the matrix
+                g.TranslateTransform(bmp.Width / 2, bmp.Height / 2);
+                // Rotate
+                g.RotateTransform(angle);
+                // Restore rotation point in the matrix
+                g.TranslateTransform(-bmp.Width / 2, -bmp.Height / 2);
+                // Draw the image on the bitmap
+                g.DrawImage(bmp, new Point(0, 0));
+            }
+
+            return rotatedImage;
         }
     }
 }
