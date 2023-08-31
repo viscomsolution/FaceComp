@@ -33,3 +33,6 @@
 
 FaceComp\obj\*
 FaceComp\bin\*
+FaceComp_UI/obj/
+.vs/
+*.pdb
