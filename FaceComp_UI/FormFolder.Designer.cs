@@ -46,12 +46,12 @@
             this.btn_selectImage = new System.Windows.Forms.Button();
             this.txt_fileName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtInvalidDir = new System.Windows.Forms.TextBox();
-            this.chkMoveInvalid = new System.Windows.Forms.CheckBox();
-            this.txtValidDir = new System.Windows.Forms.TextBox();
-            this.chkMoveValid = new System.Windows.Forms.CheckBox();
-            this.txtFailedDir = new System.Windows.Forms.TextBox();
-            this.chkMoveFail = new System.Windows.Forms.CheckBox();
+            this.txt_differentFaceDir = new System.Windows.Forms.TextBox();
+            this.chk_moveDifferentFace = new System.Windows.Forms.CheckBox();
+            this.txt_sameFaceDir = new System.Windows.Forms.TextBox();
+            this.chk_moveSameFace = new System.Windows.Forms.CheckBox();
+            this.txt_noFaceDir = new System.Windows.Forms.TextBox();
+            this.chk_moveNoFace = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.lstImage = new System.Windows.Forms.ListView();
@@ -108,7 +108,7 @@
             // btnDetect
             // 
             this.btnDetect.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetect.Location = new System.Drawing.Point(454, 29);
+            this.btnDetect.Location = new System.Drawing.Point(877, 31);
             this.btnDetect.Name = "btnDetect";
             this.btnDetect.Size = new System.Drawing.Size(100, 52);
             this.btnDetect.TabIndex = 18;
@@ -161,16 +161,16 @@
             this.grFolder.Controls.Add(this.btn_selectImage);
             this.grFolder.Controls.Add(this.txt_fileName);
             this.grFolder.Controls.Add(this.label1);
-            this.grFolder.Controls.Add(this.txtInvalidDir);
-            this.grFolder.Controls.Add(this.chkMoveInvalid);
-            this.grFolder.Controls.Add(this.txtValidDir);
+            this.grFolder.Controls.Add(this.txt_differentFaceDir);
+            this.grFolder.Controls.Add(this.chk_moveDifferentFace);
+            this.grFolder.Controls.Add(this.txt_sameFaceDir);
             this.grFolder.Controls.Add(this.btnDetect);
-            this.grFolder.Controls.Add(this.chkMoveValid);
+            this.grFolder.Controls.Add(this.chk_moveSameFace);
             this.grFolder.Controls.Add(this.btnSelectFolderInput);
             this.grFolder.Controls.Add(this.txtFolderInput);
-            this.grFolder.Controls.Add(this.txtFailedDir);
+            this.grFolder.Controls.Add(this.txt_noFaceDir);
             this.grFolder.Controls.Add(this.label2);
-            this.grFolder.Controls.Add(this.chkMoveFail);
+            this.grFolder.Controls.Add(this.chk_moveNoFace);
             this.grFolder.Controls.Add(this.label4);
             this.grFolder.Dock = System.Windows.Forms.DockStyle.Top;
             this.grFolder.Location = new System.Drawing.Point(0, 0);
@@ -230,74 +230,68 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Ảnh cần tìm";
             // 
-            // txtInvalidDir
+            // txt_differentFaceDir
             // 
-            this.txtInvalidDir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvalidDir.Location = new System.Drawing.Point(600, 77);
-            this.txtInvalidDir.Name = "txtInvalidDir";
-            this.txtInvalidDir.Size = new System.Drawing.Size(273, 25);
-            this.txtInvalidDir.TabIndex = 17;
-            this.txtInvalidDir.Visible = false;
+            this.txt_differentFaceDir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_differentFaceDir.Location = new System.Drawing.Point(600, 77);
+            this.txt_differentFaceDir.Name = "txt_differentFaceDir";
+            this.txt_differentFaceDir.Size = new System.Drawing.Size(273, 25);
+            this.txt_differentFaceDir.TabIndex = 17;
             // 
-            // chkMoveInvalid
+            // chk_moveDifferentFace
             // 
-            this.chkMoveInvalid.AutoSize = true;
-            this.chkMoveInvalid.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMoveInvalid.ForeColor = System.Drawing.Color.White;
-            this.chkMoveInvalid.Location = new System.Drawing.Point(429, 76);
-            this.chkMoveInvalid.Name = "chkMoveInvalid";
-            this.chkMoveInvalid.Size = new System.Drawing.Size(144, 23);
-            this.chkMoveInvalid.TabIndex = 16;
-            this.chkMoveInvalid.Text = "Move invalid file to";
-            this.chkMoveInvalid.UseVisualStyleBackColor = true;
-            this.chkMoveInvalid.Visible = false;
-            this.chkMoveInvalid.CheckedChanged += new System.EventHandler(this.chkMoveInvalid_CheckedChanged);
+            this.chk_moveDifferentFace.AutoSize = true;
+            this.chk_moveDifferentFace.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_moveDifferentFace.ForeColor = System.Drawing.Color.White;
+            this.chk_moveDifferentFace.Location = new System.Drawing.Point(429, 76);
+            this.chk_moveDifferentFace.Name = "chk_moveDifferentFace";
+            this.chk_moveDifferentFace.Size = new System.Drawing.Size(163, 23);
+            this.chk_moveDifferentFace.TabIndex = 16;
+            this.chk_moveDifferentFace.Text = "Move different face to";
+            this.chk_moveDifferentFace.UseVisualStyleBackColor = true;
+            this.chk_moveDifferentFace.CheckedChanged += new System.EventHandler(this.chk_moveDifferentFace_CheckedChanged);
             // 
-            // txtValidDir
+            // txt_sameFaceDir
             // 
-            this.txtValidDir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValidDir.Location = new System.Drawing.Point(600, 46);
-            this.txtValidDir.Name = "txtValidDir";
-            this.txtValidDir.Size = new System.Drawing.Size(273, 25);
-            this.txtValidDir.TabIndex = 15;
-            this.txtValidDir.Visible = false;
+            this.txt_sameFaceDir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_sameFaceDir.Location = new System.Drawing.Point(600, 46);
+            this.txt_sameFaceDir.Name = "txt_sameFaceDir";
+            this.txt_sameFaceDir.Size = new System.Drawing.Size(273, 25);
+            this.txt_sameFaceDir.TabIndex = 15;
             // 
-            // chkMoveValid
+            // chk_moveSameFace
             // 
-            this.chkMoveValid.AutoSize = true;
-            this.chkMoveValid.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMoveValid.ForeColor = System.Drawing.Color.White;
-            this.chkMoveValid.Location = new System.Drawing.Point(429, 47);
-            this.chkMoveValid.Name = "chkMoveValid";
-            this.chkMoveValid.Size = new System.Drawing.Size(133, 23);
-            this.chkMoveValid.TabIndex = 14;
-            this.chkMoveValid.Text = "Move valid file to";
-            this.chkMoveValid.UseVisualStyleBackColor = true;
-            this.chkMoveValid.Visible = false;
-            this.chkMoveValid.CheckedChanged += new System.EventHandler(this.chkMoveValid_CheckedChanged);
+            this.chk_moveSameFace.AutoSize = true;
+            this.chk_moveSameFace.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_moveSameFace.ForeColor = System.Drawing.Color.White;
+            this.chk_moveSameFace.Location = new System.Drawing.Point(429, 47);
+            this.chk_moveSameFace.Name = "chk_moveSameFace";
+            this.chk_moveSameFace.Size = new System.Drawing.Size(144, 23);
+            this.chk_moveSameFace.TabIndex = 14;
+            this.chk_moveSameFace.Text = "Move same face to";
+            this.chk_moveSameFace.UseVisualStyleBackColor = true;
+            this.chk_moveSameFace.CheckedChanged += new System.EventHandler(this.chk_moveSameFace_CheckedChanged);
             // 
-            // txtFailedDir
+            // txt_noFaceDir
             // 
-            this.txtFailedDir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFailedDir.Location = new System.Drawing.Point(600, 15);
-            this.txtFailedDir.Name = "txtFailedDir";
-            this.txtFailedDir.Size = new System.Drawing.Size(273, 25);
-            this.txtFailedDir.TabIndex = 13;
-            this.txtFailedDir.Visible = false;
+            this.txt_noFaceDir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_noFaceDir.Location = new System.Drawing.Point(600, 15);
+            this.txt_noFaceDir.Name = "txt_noFaceDir";
+            this.txt_noFaceDir.Size = new System.Drawing.Size(273, 25);
+            this.txt_noFaceDir.TabIndex = 13;
             // 
-            // chkMoveFail
+            // chk_moveNoFace
             // 
-            this.chkMoveFail.AutoSize = true;
-            this.chkMoveFail.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMoveFail.ForeColor = System.Drawing.Color.White;
-            this.chkMoveFail.Location = new System.Drawing.Point(429, 15);
-            this.chkMoveFail.Name = "chkMoveFail";
-            this.chkMoveFail.Size = new System.Drawing.Size(176, 23);
-            this.chkMoveFail.TabIndex = 12;
-            this.chkMoveFail.Text = "Move file can\'t detect to";
-            this.chkMoveFail.UseVisualStyleBackColor = true;
-            this.chkMoveFail.Visible = false;
-            this.chkMoveFail.CheckedChanged += new System.EventHandler(this.chkMoveFail_CheckedChanged);
+            this.chk_moveNoFace.AutoSize = true;
+            this.chk_moveNoFace.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_moveNoFace.ForeColor = System.Drawing.Color.White;
+            this.chk_moveNoFace.Location = new System.Drawing.Point(429, 15);
+            this.chk_moveNoFace.Name = "chk_moveNoFace";
+            this.chk_moveNoFace.Size = new System.Drawing.Size(149, 23);
+            this.chk_moveNoFace.TabIndex = 12;
+            this.chk_moveNoFace.Text = "Move file no face to";
+            this.chk_moveNoFace.UseVisualStyleBackColor = true;
+            this.chk_moveNoFace.CheckedChanged += new System.EventHandler(this.ch_moveNoFace_CheckedChanged);
             // 
             // label4
             // 
@@ -331,12 +325,12 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Ảnh";
+            this.columnHeader1.Text = "Image path";
             this.columnHeader1.Width = 272;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Phần trăm";
+            this.columnHeader2.Text = "Percent";
             this.columnHeader2.Width = 154;
             // 
             // picResult
@@ -382,12 +376,12 @@
         private System.Windows.Forms.ToolStripMenuItem btnOpenImage;
         private System.Windows.Forms.ToolStripMenuItem btnDelete;
         private System.Windows.Forms.GroupBox grFolder;
-        private System.Windows.Forms.TextBox txtInvalidDir;
-        private System.Windows.Forms.CheckBox chkMoveInvalid;
-        private System.Windows.Forms.TextBox txtValidDir;
-        private System.Windows.Forms.CheckBox chkMoveValid;
-        private System.Windows.Forms.TextBox txtFailedDir;
-        private System.Windows.Forms.CheckBox chkMoveFail;
+        private System.Windows.Forms.TextBox txt_differentFaceDir;
+        private System.Windows.Forms.CheckBox chk_moveDifferentFace;
+        private System.Windows.Forms.TextBox txt_sameFaceDir;
+        private System.Windows.Forms.CheckBox chk_moveSameFace;
+        private System.Windows.Forms.TextBox txt_noFaceDir;
+        private System.Windows.Forms.CheckBox chk_moveNoFace;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ListView lstImage;

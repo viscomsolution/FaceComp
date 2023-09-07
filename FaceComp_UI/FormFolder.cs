@@ -16,8 +16,6 @@ namespace FaceCompUI
 {
     public partial class FormFolder : Form
     {
-        string m_folderOutput = "";
-
         static FormFolder m_instance;
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,9 +32,9 @@ namespace FaceCompUI
         private void FormFolder_Load(object sender, EventArgs e)
         {
             txtFolderInput.Text = TGMTregistry.GetInstance().ReadString("folderInput");
-            txtFailedDir.Text = TGMTregistry.GetInstance().ReadString("txtFailedDir");
-            txtValidDir.Text = TGMTregistry.GetInstance().ReadString("txtValidDir");
-            txtInvalidDir.Text = TGMTregistry.GetInstance().ReadString("txtInvalidDir");
+            txt_noFaceDir.Text = TGMTregistry.GetInstance().ReadString("txt_noFaceDir");
+            txt_sameFaceDir.Text = TGMTregistry.GetInstance().ReadString("txt_sameFaceDir");
+            txt_differentFaceDir.Text = TGMTregistry.GetInstance().ReadString("txt_differentFaceDir");
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,6 +102,8 @@ namespace FaceCompUI
                     btnDetect.Enabled = true;
                 }
             }
+
+            FormMain.GetInstance().StopProgressbar();
         }
     
 
@@ -192,28 +192,36 @@ namespace FaceCompUI
             string fileName = lstImage.SelectedItems[0].Text;
 
 
-            string inputPath = TGMTutil.CorrectPath(txtFolderInput.Text);
-            string failedDir = txtFailedDir.Text != "" ? TGMTutil.CorrectPath(txtFailedDir.Text) : "";
-            
+            string inputDir = TGMTutil.CorrectPath(txtFolderInput.Text);
+            string noFaceDir = TGMTutil.CorrectPath(txt_noFaceDir.Text);
+            string sameFaceDir = TGMTutil.CorrectPath(txt_sameFaceDir.Text);
+            string differentFaceDir = TGMTutil.CorrectPath(txt_differentFaceDir.Text);
 
-            if (m_folderOutput != "" && File.Exists(m_folderOutput + fileName))
+
+
+            if (File.Exists(inputDir + fileName))
             {
-                picResult.ImageLocation = m_folderOutput + fileName;
-                FormMain.GetInstance().PrintMessage(m_folderOutput + fileName);
+                picResult.Image = TGMTimage.LoadBitmapWithoutLock(inputDir + fileName);
+                FormMain.GetInstance().PrintMessage(inputDir + fileName);
             }
-            else if (File.Exists(inputPath + fileName))
+            else if (File.Exists(noFaceDir + fileName))
             {
-                picResult.ImageLocation = inputPath + fileName;
-                FormMain.GetInstance().PrintMessage(inputPath + fileName);
+                picResult.Image = TGMTimage.LoadBitmapWithoutLock(noFaceDir + fileName);
+                FormMain.GetInstance().PrintMessage(noFaceDir + fileName);
             }
-            else if (txtFailedDir.Text != "" && File.Exists(failedDir + fileName))
+            else if (File.Exists(sameFaceDir + fileName))
             {
-                picResult.ImageLocation = failedDir + fileName;
-                FormMain.GetInstance().PrintMessage(failedDir + fileName);
+                picResult.Image = TGMTimage.LoadBitmapWithoutLock(sameFaceDir + fileName);
+                FormMain.GetInstance().PrintMessage(sameFaceDir + fileName);
+            }
+            else if (File.Exists(differentFaceDir + fileName))
+            {
+                picResult.Image = TGMTimage.LoadBitmapWithoutLock(differentFaceDir + fileName);
+                FormMain.GetInstance().PrintMessage(differentFaceDir + fileName);
             }
             else
             {
-                FormMain.GetInstance().PrintError("File " + inputPath + fileName + " does not exist");
+                FormMain.GetInstance().PrintError("File " + fileName + " does not exist");
             }
         }
 
@@ -279,20 +287,20 @@ namespace FaceCompUI
             string inputPath = "";
             if (txtFolderInput.Text != "")
                 inputPath = TGMTutil.CorrectPath(txtFolderInput.Text);
-            string failedDir = "";
-            if (txtFailedDir.Text != "")
-                failedDir = TGMTutil.CorrectPath(txtFailedDir.Text);
 
-            string validDir = "";
-            if (txtValidDir.Text != "")
-                validDir = TGMTutil.CorrectPath(txtValidDir.Text);
+            string noFaceDir = "";
+            if (txt_noFaceDir.Text != "")
+                noFaceDir = TGMTutil.CorrectPath(txt_noFaceDir.Text);
 
-            string invalidDir = "";
-            if (txtInvalidDir.Text != "")
-                invalidDir = TGMTutil.CorrectPath(txtInvalidDir.Text);
+            string sameFaceDir = "";
+            if (txt_sameFaceDir.Text != "")
+                sameFaceDir = TGMTutil.CorrectPath(txt_sameFaceDir.Text);
+
+            string differentDir = "";
+            if (txt_differentFaceDir.Text != "")
+                differentDir = TGMTutil.CorrectPath(txt_differentFaceDir.Text);
 
             int exactlyCount = 0;
-            string content = "";
 
             
 
@@ -304,26 +312,19 @@ namespace FaceCompUI
 
                 //Program.reader.OutputFileName = lstImage.Items[i].Text;
 
-                string filePath = inputPath + lstImage.Items[i].Text;
-                string ext = filePath.Substring(filePath.Length - 4).ToLower();
-                content += Path.GetFileName(filePath) + ",";
+                string fileName = lstImage.Items[i].Text;
+                string filePath = inputPath + fileName;
 
-
-                FormMain.GetInstance().PrintMessage(i + " / " + lstImage.Items.Count + " " + filePath);
-
-                Bitmap bmp;
-                try
-                {
-                    bmp = (Bitmap)Bitmap.FromFile(filePath);
-                }
-                catch (Exception ex)
-                {
+                if (txt_fileName.Text == filePath)
                     continue;
-                }
+                
+                string ext = Path.GetExtension(fileName);
+                string landmarkFile = fileName.Replace(ext, ".bin");
+                string landmarkPath = inputPath + landmarkFile;
+
+                FormMain.GetInstance().PrintMessage(i + " / " + lstImage.Items.Count + " " + filePath);                
 
                 FacialCompare result = Program.g_facecomp.Compare(txt_fileName.Text, filePath, true);
-                bmp.Dispose();
-
                
                 if (lstImage.Items[i].SubItems.Count == 1)
                 {
@@ -333,60 +334,42 @@ namespace FaceCompUI
                 {
                     lstImage.Items[i].SubItems[1].Text = result.percent.ToString();
                 }
-                lstImage.Items[i].ForeColor = result.isSamePerson ? Color.Green : Color.Black;
-                //content += "x,";
-
-                    //if (result.isValid)
-                    //{
-                    //    exactlyCount++;
-                    //    if (chkMoveValid.Checked)
-                    //    {
-                    //        Task.Run(() => File.Move(inputPath + lstImage.Items[i].Text, validDir + lstImage.Items[i].Text));
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if (chkMoveInvalid.Checked)
-                    //    {
-                    //        Task.Run(() => File.Move(inputPath + lstImage.Items[i].Text, invalidDir + lstImage.Items[i].Text));
-                    //    }
-                    //}
                 
-                //else
-                //{
-                //    if (lstImage.Items[i].SubItems.Count == 1)
-                //    {
-                //        lstImage.Items[i].SubItems.Add(result.error);
-                //    }
-                //    else
-                //    {
-                //        lstImage.Items[i].SubItems[1].Text = result.error;
-                //    }
-                //    if (chkMoveFail.Checked)
-                //    {
-                //        Task.Run(() => File.Move(inputPath + lstImage.Items[i].Text, failedDir + lstImage.Items[i].Text));
-                //    }
 
-                //    lstImage.Items[i].ForeColor = Color.Red;
-                //    content += ",";
-                //}
-
-                //content += result.text;
-                //content += "\r\n";
-
-
-                //result.Dispose();
-
+                if (result.isSamePerson)
+                {
+                    lstImage.Items[i].ForeColor = Color.Green;
+                    exactlyCount++;
+                    if (chk_moveSameFace.Checked)
+                    {
+                        Task.Run(() => File.Move(filePath, sameFaceDir + fileName));
+                        Task.Run(() => File.Move(landmarkPath, sameFaceDir + landmarkFile));                        
+                    }
+                }
+                else
+                {
+                    if (result.errorCode == 404 || result.percent == 0) //face not found
+                    {
+                        lstImage.Items[i].ForeColor = Color.Red;
+                        if (chk_moveNoFace.Checked)
+                        {
+                            Task.Run(() => File.Move(filePath, noFaceDir + fileName));
+                            Task.Run(() => File.Move(landmarkPath, noFaceDir + landmarkFile));
+                        }                            
+                    }
+                    else //different person
+                    {
+                        if (chk_moveDifferentFace.Checked)
+                        {
+                            Task.Run(() => File.Move(filePath, differentDir + fileName));
+                            Task.Run(() => File.Move(landmarkPath, differentDir + landmarkFile));
+                        }
+                    }
+                }
+                
 
                 lstImage.EnsureVisible(i);
             }
-
-            if (inputPath != "")
-            {
-                content += "Exactly " + exactlyCount + " / " + lstImage.Items.Count + " plates\r\n";
-                //File.WriteAllText(Path.GetDirectoryName(inputPath) + "\\_report.csv", content);
-            }
-
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -403,8 +386,6 @@ namespace FaceCompUI
             FormMain.GetInstance().StopProgressbar();
 
             btnDetect.Text = "Start detect (F5)";
-            if (m_folderOutput != "")
-                FormMain.GetInstance().PrintMessage("Save report to " + TGMTutil.CorrectPath(txtFolderInput.Text) + "_report.csv");
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -426,79 +407,79 @@ namespace FaceCompUI
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void chkMoveFail_CheckedChanged(object sender, EventArgs e)
+        private void ch_moveNoFace_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkMoveFail.Checked)
+            if (chk_moveNoFace.Checked)
             {
                 errorProvider1.Clear();
 
-                if (txtFailedDir.Text == "")
+                if (txt_noFaceDir.Text == "")
                 {
-                    chkMoveFail.Checked = false;
-                    FormMain.GetInstance().PrintError("Target directory is empty");
+                    chk_moveNoFace.Checked = false;
+                    FormMain.GetInstance().PrintError("No face directory is empty");
                 }
-                else if (!Directory.Exists(txtFailedDir.Text))
+                else if (!Directory.Exists(txt_noFaceDir.Text))
                 {
                     //does not create new dir to avoid replace existed file
-                    errorProvider1.SetError(txtFailedDir, "Dir does not exist");
+                    errorProvider1.SetError(txt_noFaceDir, "Dir does not exist");
 
-                    chkMoveFail.Checked = false;
+                    chk_moveNoFace.Checked = false;
                 }
                 else
                 {
-                    TGMTregistry.GetInstance().SaveValue("txtFailedDir", txtFailedDir.Text);
+                    TGMTregistry.GetInstance().SaveValue("txt_noFaceDir", txt_noFaceDir.Text);
                 }
             }
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void chkMoveValid_CheckedChanged(object sender, EventArgs e)
+        private void chk_moveSameFace_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkMoveValid.Checked)
+            if (chk_moveSameFace.Checked)
             {
                 errorProvider1.Clear();
 
-                if (txtValidDir.Text == "")
+                if (txt_sameFaceDir.Text == "")
                 {
-                    FormMain.GetInstance().PrintError("Valid directory is empty");
-                    chkMoveValid.Checked = false;
+                    FormMain.GetInstance().PrintError("Same face directory is empty");
+                    chk_moveSameFace.Checked = false;
                 }
-                else if (!Directory.Exists(txtValidDir.Text))
+                else if (!Directory.Exists(txt_sameFaceDir.Text))
                 {
                     //does not create new dir to avoid replace existed file
-                    errorProvider1.SetError(txtValidDir, "Dir does not exist");
-                    chkMoveValid.Checked = false;
+                    errorProvider1.SetError(txt_sameFaceDir, "Dir does not exist");
+                    chk_moveSameFace.Checked = false;
                 }
                 else
                 {
-                    TGMTregistry.GetInstance().SaveValue("txtValidDir", txtValidDir.Text);
+                    TGMTregistry.GetInstance().SaveValue("txt_sameFaceDir", txt_sameFaceDir.Text);
                 }
             }
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void chkMoveInvalid_CheckedChanged(object sender, EventArgs e)
+        private void chk_moveDifferentFace_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkMoveInvalid.Checked)
+            if (chk_moveDifferentFace.Checked)
             {
                 errorProvider1.Clear();
 
-                if (txtInvalidDir.Text == "")
+                if (txt_differentFaceDir.Text == "")
                 {
                     FormMain.GetInstance().PrintError("Invalid directory is empty");
-                    chkMoveInvalid.Checked = false;
+                    chk_moveDifferentFace.Checked = false;
                 }
-                else if (!Directory.Exists(txtInvalidDir.Text))
+                else if (!Directory.Exists(txt_differentFaceDir.Text))
                 {
                     //does not create new dir to avoid replace existed file
-                    errorProvider1.SetError(txtInvalidDir, "Dir does not exist");
-                    chkMoveInvalid.Checked = false;
+                    errorProvider1.SetError(txt_differentFaceDir, "Dir does not exist");
+                    chk_moveDifferentFace.Checked = false;
                 }
                 else
                 {
-                    TGMTregistry.GetInstance().SaveValue("txtInvalidDir", txtInvalidDir.Text);
+                    TGMTregistry.GetInstance().SaveValue("txt_differentFaceDir", txt_differentFaceDir.Text);
                 }
             }
         }
@@ -517,6 +498,15 @@ namespace FaceCompUI
                 bgWorker1.CancelAsync();
                 btnDetect.Text = "Start detect";
             }
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        string ConvertToLandmarkPath(string filePath)
+        {
+            string ext = Path.GetExtension(filePath);
+            string landmarkPath = filePath.Replace(ext, ".bin");
+            return landmarkPath;
         }
     }
 }
