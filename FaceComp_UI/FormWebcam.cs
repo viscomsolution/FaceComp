@@ -47,8 +47,6 @@ namespace FaceCompUI
 
         private void FormWebcam_Load(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)Image.FromFile(@"C:\Users\vohungvi\Downloads\200909_gma_digital_AdamSandlerbday_1_hpMain_4x3_608.jpg");
-            Program.g_facecomp.AddAppear(bmp);
             InitCamera();
         }
 
