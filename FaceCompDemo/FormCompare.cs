@@ -12,7 +12,7 @@ using AForge.Video.DirectShow;
 using System.Diagnostics;
 using TGMTcs;
 
-namespace FaceCompUI
+namespace FaceCompDemo
 {
     public partial class FormCompare : Form
     {
@@ -292,6 +292,7 @@ namespace FaceCompUI
             FormMain.GetInstance().StartProgressbar();
 
             Bitmap bmp = TGMTimage.LoadBitmapWithoutLock(fileName);
+            bmp = TGMTimage.CorrectOrientation(bmp);
             if (bmp != null)
             {                
                 picCamera1.Image = bmp;
@@ -331,6 +332,8 @@ namespace FaceCompUI
             string fileName = txt_fileName2.Text.Replace("\"", "");
             lbl_result.Text = "";
             Bitmap bmp = TGMTimage.LoadBitmapWithoutLock(fileName);
+            bmp = TGMTimage.CorrectOrientation(bmp);
+
             if (bmp != null)
             {
                 picCamera2.Image = bmp;

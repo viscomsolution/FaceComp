@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TGMTcs;
 
-namespace FaceCompUI
+namespace FaceCompDemo
 {
     public partial class FormFolder : Form
     {
@@ -74,6 +74,7 @@ namespace FaceCompUI
             FormMain.GetInstance().StartProgressbar();
 
             Bitmap bmp = TGMTimage.LoadBitmapWithoutLock(fileName);
+            bmp = TGMTimage.CorrectOrientation(bmp);
             if (bmp != null)
             {
                 picResult.Image = bmp;
@@ -348,7 +349,7 @@ namespace FaceCompUI
                 }
                 else
                 {
-                    if (result.errorCode == 404 || result.percent == 0) //face not found
+                    if (result.errorCode == 204 || result.percent == 0) //face not found
                     {
                         lstImage.Items[i].ForeColor = Color.Red;
                         if (chk_moveNoFace.Checked)
@@ -488,6 +489,8 @@ namespace FaceCompUI
 
         private void btnDetect_Click(object sender, EventArgs e)
         {
+            if (txt_fileName.Text == "")
+                return;
             if (btnDetect.Text.Contains("Start"))
             {
                 bgWorker1.RunWorkerAsync();
@@ -507,6 +510,36 @@ namespace FaceCompUI
             string ext = Path.GetExtension(filePath);
             string landmarkPath = filePath.Replace(ext, ".bin");
             return landmarkPath;
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void lstImage_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column != 1)
+                return;
+            
+            ListView lv = (ListView)sender;
+
+            //propriety SortOrder make me some problem on graphic layout
+            //i use this tag to set last order
+            if (lv.Tag == null || (int)lv.Tag > 0)
+            {
+                ListViewItem[] tmp = lv.Items.Cast<ListViewItem>().OrderBy(t => int.Parse(t.SubItems[e.Column].Text)).ToArray();
+                lv.Items.Clear();
+                lv.Items.AddRange(tmp);
+
+                lv.Tag = -1;
+            }
+            else
+            {
+                ListViewItem[] tmp = lv.Items.Cast<ListViewItem>().OrderByDescending(t => int.Parse(t.SubItems[e.Column].Text)).ToArray();
+                lv.Items.Clear();
+                lv.Items.AddRange(tmp);
+
+                lv.Tag = +1;
+            }
+            
         }
     }
 }

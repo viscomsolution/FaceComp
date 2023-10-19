@@ -1,4 +1,4 @@
-﻿namespace FaceCompUI
+﻿namespace FaceCompDemo
 {
     partial class FormCompare
     {

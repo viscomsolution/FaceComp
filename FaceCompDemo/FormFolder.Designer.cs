@@ -1,4 +1,4 @@
-﻿namespace FaceCompUI
+﻿namespace FaceCompDemo
 {
     partial class FormFolder
     {
@@ -71,6 +71,7 @@
             // 
             // bgWorker1
             // 
+            this.bgWorker1.WorkerSupportsCancellation = true;
             this.bgWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker1_DoWork);
             this.bgWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker1_ProgressChanged);
             this.bgWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker1_RunWorkerCompleted);
@@ -321,6 +322,7 @@
             this.lstImage.TabIndex = 34;
             this.lstImage.UseCompatibleStateImageBehavior = false;
             this.lstImage.View = System.Windows.Forms.View.Details;
+            this.lstImage.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstImage_ColumnClick);
             this.lstImage.SelectedIndexChanged += new System.EventHandler(this.lstImage_SelectedIndexChanged);
             // 
             // columnHeader1

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TGMTcs;
 
-namespace FaceCompUI
+namespace FaceCompDemo
 {
     static class Program
     {

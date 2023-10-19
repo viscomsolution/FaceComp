@@ -1,4 +1,4 @@
-﻿namespace FaceCompUI
+﻿namespace FaceCompDemo
 {
     partial class FormMain
     {
@@ -31,9 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btn_settings = new System.Windows.Forms.Button();
+            this.btn_folder = new System.Windows.Forms.Button();
+            this.btn_person = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnWebcam = new System.Windows.Forms.Button();
+            this.btn_compare = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.lbl_version = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
@@ -41,16 +47,10 @@
             this.timerProgressbar = new System.Windows.Forms.Timer(this.components);
             this.timerClear = new System.Windows.Forms.Timer(this.components);
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
-            this.btn_settings = new System.Windows.Forms.Button();
-            this.btn_folder = new System.Windows.Forms.Button();
-            this.btn_person = new System.Windows.Forms.Button();
-            this.btnWebcam = new System.Windows.Forms.Button();
-            this.btn_compare = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -69,6 +69,68 @@
             this.panelMenu.Size = new System.Drawing.Size(200, 767);
             this.panelMenu.TabIndex = 16;
             // 
+            // btn_settings
+            // 
+            this.btn_settings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_settings.FlatAppearance.BorderSize = 0;
+            this.btn_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_settings.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btn_settings.Image = ((System.Drawing.Image)(resources.GetObject("btn_settings.Image")));
+            this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_settings.Location = new System.Drawing.Point(0, 316);
+            this.btn_settings.Name = "btn_settings";
+            this.btn_settings.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btn_settings.Size = new System.Drawing.Size(200, 60);
+            this.btn_settings.TabIndex = 9;
+            this.btn_settings.Text = "   Settings";
+            this.btn_settings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_settings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_settings.UseVisualStyleBackColor = true;
+            this.btn_settings.Visible = false;
+            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
+            // 
+            // btn_folder
+            // 
+            this.btn_folder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_folder.FlatAppearance.BorderSize = 0;
+            this.btn_folder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_folder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_folder.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btn_folder.Image = global::FaceCompDemo.Properties.Resources.folder_32px;
+            this.btn_folder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_folder.Location = new System.Drawing.Point(0, 256);
+            this.btn_folder.Name = "btn_folder";
+            this.btn_folder.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btn_folder.Size = new System.Drawing.Size(200, 60);
+            this.btn_folder.TabIndex = 10;
+            this.btn_folder.Text = " Search in folder";
+            this.btn_folder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_folder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_folder.UseVisualStyleBackColor = true;
+            this.btn_folder.Click += new System.EventHandler(this.btn_folder_Click);
+            // 
+            // btn_person
+            // 
+            this.btn_person.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_person.FlatAppearance.BorderSize = 0;
+            this.btn_person.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_person.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_person.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btn_person.Image = global::FaceCompDemo.Properties.Resources.users;
+            this.btn_person.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_person.Location = new System.Drawing.Point(0, 196);
+            this.btn_person.Name = "btn_person";
+            this.btn_person.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btn_person.Size = new System.Drawing.Size(200, 60);
+            this.btn_person.TabIndex = 8;
+            this.btn_person.Text = " Persons";
+            this.btn_person.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_person.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_person.UseVisualStyleBackColor = true;
+            this.btn_person.Visible = false;
+            this.btn_person.Click += new System.EventHandler(this.btn_settings_Click);
+            // 
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -76,6 +138,46 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(200, 23);
             this.progressBar1.TabIndex = 7;
+            // 
+            // btnWebcam
+            // 
+            this.btnWebcam.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnWebcam.FlatAppearance.BorderSize = 0;
+            this.btnWebcam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWebcam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWebcam.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnWebcam.Image = ((System.Drawing.Image)(resources.GetObject("btnWebcam.Image")));
+            this.btnWebcam.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnWebcam.Location = new System.Drawing.Point(0, 136);
+            this.btnWebcam.Name = "btnWebcam";
+            this.btnWebcam.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnWebcam.Size = new System.Drawing.Size(200, 60);
+            this.btnWebcam.TabIndex = 2;
+            this.btnWebcam.Text = " Webcam realtime";
+            this.btnWebcam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnWebcam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnWebcam.UseVisualStyleBackColor = true;
+            this.btnWebcam.Click += new System.EventHandler(this.btnWebcam_Click);
+            // 
+            // btn_compare
+            // 
+            this.btn_compare.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_compare.FlatAppearance.BorderSize = 0;
+            this.btn_compare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_compare.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_compare.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btn_compare.Image = ((System.Drawing.Image)(resources.GetObject("btn_compare.Image")));
+            this.btn_compare.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_compare.Location = new System.Drawing.Point(0, 76);
+            this.btn_compare.Name = "btn_compare";
+            this.btn_compare.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btn_compare.Size = new System.Drawing.Size(200, 60);
+            this.btn_compare.TabIndex = 1;
+            this.btn_compare.Text = " Compare 2 faces";
+            this.btn_compare.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_compare.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_compare.UseVisualStyleBackColor = true;
+            this.btn_compare.Click += new System.EventHandler(this.btn_compare_Click);
             // 
             // panelLogo
             // 
@@ -99,6 +201,17 @@
             this.lbl_version.Size = new System.Drawing.Size(62, 21);
             this.lbl_version.TabIndex = 2;
             this.lbl_version.Text = "Version";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(70, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -151,119 +264,6 @@
             this.timerRefresh.Enabled = true;
             this.timerRefresh.Interval = 300000;
             // 
-            // btn_settings
-            // 
-            this.btn_settings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_settings.FlatAppearance.BorderSize = 0;
-            this.btn_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_settings.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_settings.Image = ((System.Drawing.Image)(resources.GetObject("btn_settings.Image")));
-            this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_settings.Location = new System.Drawing.Point(0, 316);
-            this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btn_settings.Size = new System.Drawing.Size(200, 60);
-            this.btn_settings.TabIndex = 9;
-            this.btn_settings.Text = "   Settings";
-            this.btn_settings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_settings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_settings.UseVisualStyleBackColor = true;
-            this.btn_settings.Visible = false;
-            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
-            // 
-            // btn_folder
-            // 
-            this.btn_folder.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_folder.FlatAppearance.BorderSize = 0;
-            this.btn_folder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_folder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_folder.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_folder.Image = global::FaceCompUI.Properties.Resources.folder_32px;
-            this.btn_folder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_folder.Location = new System.Drawing.Point(0, 256);
-            this.btn_folder.Name = "btn_folder";
-            this.btn_folder.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btn_folder.Size = new System.Drawing.Size(200, 60);
-            this.btn_folder.TabIndex = 10;
-            this.btn_folder.Text = " Search in folder";
-            this.btn_folder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_folder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_folder.UseVisualStyleBackColor = true;
-            this.btn_folder.Click += new System.EventHandler(this.btn_folder_Click);
-            // 
-            // btn_person
-            // 
-            this.btn_person.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_person.FlatAppearance.BorderSize = 0;
-            this.btn_person.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_person.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_person.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_person.Image = global::FaceCompUI.Properties.Resources.users;
-            this.btn_person.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_person.Location = new System.Drawing.Point(0, 196);
-            this.btn_person.Name = "btn_person";
-            this.btn_person.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btn_person.Size = new System.Drawing.Size(200, 60);
-            this.btn_person.TabIndex = 8;
-            this.btn_person.Text = " Persons";
-            this.btn_person.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_person.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_person.UseVisualStyleBackColor = true;
-            this.btn_person.Visible = false;
-            this.btn_person.Click += new System.EventHandler(this.btn_settings_Click);
-            // 
-            // btnWebcam
-            // 
-            this.btnWebcam.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnWebcam.FlatAppearance.BorderSize = 0;
-            this.btnWebcam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWebcam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWebcam.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnWebcam.Image = ((System.Drawing.Image)(resources.GetObject("btnWebcam.Image")));
-            this.btnWebcam.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWebcam.Location = new System.Drawing.Point(0, 136);
-            this.btnWebcam.Name = "btnWebcam";
-            this.btnWebcam.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btnWebcam.Size = new System.Drawing.Size(200, 60);
-            this.btnWebcam.TabIndex = 2;
-            this.btnWebcam.Text = " Webcam realtime";
-            this.btnWebcam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWebcam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnWebcam.UseVisualStyleBackColor = true;
-            this.btnWebcam.Click += new System.EventHandler(this.btnWebcam_Click);
-            // 
-            // btn_compare
-            // 
-            this.btn_compare.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_compare.FlatAppearance.BorderSize = 0;
-            this.btn_compare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_compare.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_compare.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_compare.Image = ((System.Drawing.Image)(resources.GetObject("btn_compare.Image")));
-            this.btn_compare.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_compare.Location = new System.Drawing.Point(0, 76);
-            this.btn_compare.Name = "btn_compare";
-            this.btn_compare.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btn_compare.Size = new System.Drawing.Size(200, 60);
-            this.btn_compare.TabIndex = 1;
-            this.btn_compare.Text = " Compare 2 faces";
-            this.btn_compare.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_compare.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_compare.UseVisualStyleBackColor = true;
-            this.btn_compare.Click += new System.EventHandler(this.btn_compare_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(70, 70);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,9 +280,9 @@
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

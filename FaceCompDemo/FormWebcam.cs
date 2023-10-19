@@ -13,7 +13,7 @@ using AForge.Video.DirectShow;
 using System.Diagnostics;
 using UI;
 
-namespace FaceCompUI
+namespace FaceCompDemo
 {
     public partial class FormWebcam : Form
     {
@@ -46,7 +46,7 @@ namespace FaceCompUI
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void FormWebcam_Load(object sender, EventArgs e)
-        {
+        {            
             InitCamera();
         }
 
